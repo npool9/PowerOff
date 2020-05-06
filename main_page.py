@@ -2,6 +2,7 @@ from kivy.uix.relativelayout import RelativeLayout
 from kivy.app import App
 import os
 from kivy.clock import Clock
+import dbus
 
 
 class MainPage(RelativeLayout):
@@ -43,11 +44,14 @@ class MainPage(RelativeLayout):
         :param interval: the delta time
         :return: remaining seconds
         """
+        app = App.get_running_app()  # get app's root
+        stopwatch = app.root.ids.stopwatch
+        stopwatch.text = str(int(self.time_left))
         self.time_left -= interval
         if self.time_left < 0:
             self.stop_timer()
             print("SHUT DOWN BOI")
-            # os.system("shutdown /s /t 1")
+            os.system("shutdown /s /t 1")
 
     def stop_timer(self):
         """
@@ -62,4 +66,6 @@ class MainPage(RelativeLayout):
         app.root.ids.hours.text = '0'
         app.root.ids.minutes.text = '0'
         app.root.ids.seconds.text = '0'
+        app.root.ids.stopwatch.text = '0'
         return 0
+

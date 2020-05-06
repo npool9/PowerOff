@@ -8,6 +8,7 @@
             Rectangle:
                 pos: root.pos
                 size: root.size
+        orientation: 'vertical'
         PowerButton:
             id: power_button
             source: 'images/power_button_green.png'
@@ -72,3 +73,17 @@
                 multiline: False
                 width:
                 input_type: 'number'
+        BackgroundLabel:
+            id: stopwatch
+            text: '0'
+            color: 1, 1, 1, 1
+            pos: 0, -200
+            font_size: 40
+            bold: True
+            canvas.before:
+                Color:
+#                    rgba: 1, 0.86, 0, 1
+                    rgba: 0, 0, 0, 1
+                Ellipse:
+                    pos: self.center_x-75, self.center_y-75
+                    size: 150, 150

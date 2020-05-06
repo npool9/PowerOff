@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.uix.image import Image
 from custom_button_behavior import CustomButtonBehavior
 from main_page import MainPage
+from kivy.uix.label import Label
 
 
 class PowerApp(App):
@@ -33,6 +34,9 @@ class PowerApp(App):
         The power image as a button
         Defined in the power_off.kv file
         """
+        pass
+
+    class BackgroundLabel(Label):
         pass
 
 
