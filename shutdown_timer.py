@@ -1,7 +1,8 @@
 from threading import Timer
+import os
 
 
-class RepeatedTimer(object):
+class ShutdownTimer(object):
     def __init__(self, interval, function, *args, **kwargs):
         self._timer = None
         self.interval = interval
@@ -25,3 +26,6 @@ class RepeatedTimer(object):
     def stop(self):
         self._timer.cancel()
         self.is_running = False
+        # TODO: shut down device
+        print("SHUT DOWN BOI")
+        # os.system("shutdown /s /t 1")

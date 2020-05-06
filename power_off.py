@@ -6,6 +6,7 @@ from custom_button_behavior import CustomButtonBehavior
 from kivy.uix.behaviors import ToggleButtonBehavior
 from main_page import MainPage
 import time
+from shutdown_timer import ShutdownTimer
 
 
 class PowerApp(App):
@@ -35,6 +36,7 @@ class PowerApp(App):
     class PowerButton(CustomButtonBehavior, Image):
         """
         The power image as a button
+        Defined in the power_off.kv file
         """
         pass
 

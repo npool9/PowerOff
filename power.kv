@@ -35,6 +35,12 @@
                 color: 0, 0, 0, 1
                 bold: True
                 size_hint: 0.05, 1
+                pos_hint: {'center_x': 0.5, 'center_y': 13}
+            Label:
+                text: "Seconds:"
+                color: 0, 0, 0, 1
+                bold: True
+                size_hint: 0.05, 1
                 pos_hint: {'center_x': 0.6, 'center_y': 13}
             TextInput:  # hours
                 id: hours
@@ -48,6 +54,16 @@
                 input_type: 'number'
             TextInput:  # minutes
                 id: minutes
+                size_hint: 0.05, 1
+                pos_hint: {'center_x': 0.5, 'center_y': 12}
+                background_color: 0, 0, 0, 1
+                foreground_color: 1, 1, 1, 1
+                text: '0'
+                multiline: False
+                width:
+                input_type: 'number'
+            TextInput:  # minutes
+                id: seconds
                 size_hint: 0.05, 1
                 pos_hint: {'center_x': 0.6, 'center_y': 12}
                 background_color: 0, 0, 0, 1
