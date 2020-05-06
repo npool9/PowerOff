@@ -9,7 +9,7 @@
                 pos: root.pos
                 size: root.size
         PowerButton:
-            id: timer_off
+            id: power_button
             source: 'images/power_button_green.png'
             size_hint: 0.25, 0.25  # proportion
             pos_hint: {'center_x': 0.5, 'center_y': 0.7}
@@ -19,7 +19,8 @@
                 if self.state == 'normal2': self.source = 'images/power_button_red.png'
                 if self.state == 'down': self.source = 'images/power_button_yellow.png'
             on_press:
-                root.calculate_time() if self.prev_state == 'normal1' else root.stop_timer()
+                if self.prev_state == 'normal1': self.seconds = root.calculate_time()
+                else: self.seconds = root.stop_timer()
         RelativeLayout:
             pos: 5, 0.5
             size_hint: 1, 0.038
