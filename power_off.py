@@ -1,7 +1,9 @@
 from kivy.app import App
+from kivy.properties import OptionProperty
 from kivy.uix.label import Label
 from kivy.uix.image import Image
-from kivy.uix.behaviors import ButtonBehavior
+from custom_button_behavior import CustomButtonBehavior
+from kivy.uix.behaviors import ToggleButtonBehavior
 from main_page import MainPage
 import time
 
@@ -28,10 +30,13 @@ class PowerApp(App):
         Here is where the UI functionality is called.
         :return:
         """
-        img = Image(source=self.image_path + self.power_button,
-                    size_hint=(1, .5),
-                    pos_hint={'center_x': .5, 'center_y': .5})
         return MainPage()
+
+    class PowerButton(CustomButtonBehavior, Image):
+        """
+        The power image as a button
+        """
+        pass
 
 
 if __name__ == "__main__":

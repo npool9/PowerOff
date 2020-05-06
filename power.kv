@@ -8,13 +8,26 @@
             Rectangle:
                 pos: root.pos
                 size: root.size
-        Button:
-            background_normal: 'images/power_button.png'
-            background_down: 'image/power_button_yellow.png'
-            size_hint: 0.2, 0.25  # proportion
+        PowerButton:
+            id: timer_off
+            source: 'images/power_button_green.png'
+            size_hint: 0.25, 0.25  # proportion
             pos_hint: {'center_x': 0.5, 'center_y': 0.7}
             allow_stretch: False
-            on_release: root.calculate_time()
+            on_state:
+                if self.state == 'normal1': self.source = 'images/power_button_green.png'
+                if self.state == 'normal2': self.source = 'images/power_button_red.png'
+                if self.state == 'down': self.source = 'images/power_button_yellow.png'
+            on_press:
+                root.calculate_time() if self.prev_state == 'normal1' else print("Stop the timer.")
+#        PowerButton:
+#            id: timer_on
+#            source: 'images/power_button_red.png' if self.state == 'normal' else 'images/power_button_yellow.png'
+#            size_hint: 0.25, 0.25  # proportion
+#            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+#            allow_stretch: False
+#            on_press:
+#                source: 'images/power_button_yellow.png'
         RelativeLayout:
             pos: 5, 0.5
             size_hint: 1, 0.038
