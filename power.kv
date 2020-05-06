@@ -1,0 +1,52 @@
+<MainPage>:
+    RelativeLayout:
+        size: root.size
+        pos: root.pos
+        canvas:
+            Color:
+                rgba: 1, 1, 1, 0.95
+            Rectangle:
+                pos: root.pos
+                size: root.size
+        Button:
+            background_normal: 'images/power_button.png'
+            background_down: 'image/power_button_yellow.png'
+            size_hint: 0.2, 0.25  # proportion
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+            allow_stretch: False
+            on_release: root.calculate_time()
+        RelativeLayout:
+            pos: 5, 0.5
+            size_hint: 1, 0.038
+            orientation: 'horizontal'
+            Label:
+                text: "Hours:"
+                color: 0, 0, 0, 1
+                bold: True
+                pos_hint: {'center_x': 0.4, 'center_y': 13}
+            Label:
+                text: "Minutes:"
+                color: 0, 0, 0, 1
+                bold: True
+                size_hint: 0.05, 1
+                pos_hint: {'center_x': 0.6, 'center_y': 13}
+            TextInput:  # hours
+                id: hours
+                size_hint: 0.05, 1
+                pos_hint: {'center_x': 0.4, 'center_y': 12}
+                background_color: 0, 0, 0, 1
+                foreground_color: 1, 1, 1, 1
+                text: '0'
+                multiline: False
+                width:
+                input_type: 'number'
+            TextInput:  # minutes
+                id: minutes
+                size_hint: 0.05, 1
+                pos_hint: {'center_x': 0.6, 'center_y': 12}
+                background_color: 0, 0, 0, 1
+                foreground_color: 1, 1, 1, 1
+                text: '0'
+                multiline: False
+                width:
+                input_type: 'number'
