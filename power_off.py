@@ -1,12 +1,7 @@
 from kivy.app import App
-from kivy.properties import OptionProperty
-from kivy.uix.label import Label
 from kivy.uix.image import Image
 from custom_button_behavior import CustomButtonBehavior
-from kivy.uix.behaviors import ToggleButtonBehavior
 from main_page import MainPage
-import time
-from shutdown_timer import ShutdownTimer
 
 
 class PowerApp(App):

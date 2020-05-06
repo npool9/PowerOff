@@ -37,19 +37,6 @@ class MainPage(RelativeLayout):
         except ValueError:
             print("Please input numbers in the text boxes.")
 
-    # def start_countdown(self):
-    #     """
-    #     Start a countdown timer for a given number of seconds
-    #     """
-    #     # TODO: start new thread for stop watch
-    #     print("Turn off phone in", "\033[1m" + str(self.time_left) + "\033[0m", "seconds.")
-    #     interval = 1.0
-    #     st = ShutdownTimer(interval, self.count_down, interval)
-    #     # try:
-    #     #     time.sleep(self.time_left)  # your long-running job goes here...
-    #     if self.time_left <= 0:
-    #         st.stop()  # better in a try/finally block to make sure the program ends!
-
     def count_down(self, interval):
         """
         Count down (stopwatch) from a given number of seconds
