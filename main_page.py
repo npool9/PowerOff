@@ -23,7 +23,6 @@ class MainPage(RelativeLayout):
             if seconds == 0:
                 print("Please input a time greater than 0.")
             else:
-                print("Seconds until phone will turn off:", seconds)
                 self.start_countdown(seconds)
             return seconds
         except ValueError:
@@ -34,4 +33,15 @@ class MainPage(RelativeLayout):
         Start a countdown timer for a given number of seconds
         :param seconds: number of seconds chosen by the user until phone turns off
         """
-        # start new thread for stop watch
+        # TODO: start new thread for stop watch
+        print("Turn off phone in", str(seconds), "seconds.")
+
+    def stop_timer(self):
+        """
+        Interrupt the stopwatch thread and stop the timer.
+        """
+        # TODO: stop the timer
+        print("Stop the timer.")
+        app = App.get_running_app()  # get the app's root
+        app.root.ids.hours.text = '0'
+        app.root.ids.minutes.text = '0'
