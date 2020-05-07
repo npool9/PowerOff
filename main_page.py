@@ -1,20 +1,68 @@
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.app import App
-import os
 from kivy.clock import Clock
+from kivy.utils import platform
+import time
+import subprocess
+import math
 import dbus
+import sys
+from kivy.logger import Logger
+import os
+try:
+    from jnius import autoclass
+except KeyError:
+    os.environ['JDK_HOME'] = "/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home"
+    os.environ['JAVA_HOME'] = "/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home"
+    from jnius import autoclass
 
 
 class MainPage(RelativeLayout):
     """
     The main page of the application and its various functions
     """
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.timer_state = None
         self.time_left = None
         self.interval = 1
         self.timer_event = None
+
+        # get root access by OS
+        # euid = os.geteuid()
+        # if euid != 0:
+        #     args = ['su', sys.executable] + sys.argv + [os.environ]
+        #     # the next line replaces the currently-running process with the sudo
+        #     os.execlpe('sudo', *args)
+        #
+        # if platform == 'android':
+        #     self.python_activity = autoclass("org.kivy.android.PythonActivity").mActivity
+        #     self.context = autoclass('android.content.Context')
+        #     self.context_compat = autoclass('android.support.v4.content.ContextCompat')
+
+    # def check_permission(self, permission):
+    #     """
+    #     Check for permissions from the user
+    #     :param permission: the permission that we're checking
+    #     :return: permission_granted = True or False
+    #     """
+    #     activity = self.python_activity
+    #     permission_status = self.context_compat.checkSelfPermission(activity, permission)
+    #
+    #     Logger.info(permission_status)
+    #     permission_granted = 0 == permission_status
+    #     Logger.info("Permission Status: {}".format(permission_granted))
+    #     return permission_granted
+    #
+    # def ask_permission(self, permission):
+    #     """
+    #     Ask for permission from the user
+    #     :param permission: the permission that we're requesting
+    #     """
+    #     if platform == 'android':
+    #         activity = self.python_activity
+    #         activity.requestPermissions([permission])
 
     def calculate_time(self):
         """
@@ -47,11 +95,13 @@ class MainPage(RelativeLayout):
         app = App.get_running_app()  # get app's root
         stopwatch = app.root.ids.stopwatch
         stopwatch.text = str(int(self.time_left))
-        self.time_left -= interval
+        self.time_left -= round(interval)
+        stopwatch.text = str(int(self.time_left))
         if self.time_left < 0:
             self.stop_timer()
             print("SHUT DOWN BOI")
-            os.system("shutdown /s /t 1")
+            time.sleep(1)
+            self.shut_down()
 
     def stop_timer(self):
         """
@@ -68,4 +118,18 @@ class MainPage(RelativeLayout):
         app.root.ids.seconds.text = '0'
         app.root.ids.stopwatch.text = '0'
         return 0
+
+    def shut_down(self):
+        """
+        Shut down the device depending on the device on which the program is being run
+        """
+        # sys_bus = dbus.SystemBus()
+        # ck_srv = sys_bus.get_object('org.freedesktop.ConsoleKit',
+        #                             '/org/freedesktop/ConsoleKit/Manager')
+        # ck_iface = dbus.Interface(ck_srv, 'org.freedesktop.ConsoleKit.Manager')
+        # stop_method = ck_iface.get_dbus_method("Stop")
+        # stop_method()
+        # ["pmset", "sleepnow"]  # sleep alternative
+        # command_dict = {'macosx': ["shutdown", "-h"], 'windows': [], 'android': []}
+        subprocess.run(["pmset", "sleepnow"])
 

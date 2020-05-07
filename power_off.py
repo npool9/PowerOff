@@ -3,6 +3,7 @@ from kivy.uix.image import Image
 from custom_button_behavior import CustomButtonBehavior
 from main_page import MainPage
 from kivy.uix.label import Label
+from elevate import elevate
 
 
 class PowerApp(App):
@@ -27,6 +28,9 @@ class PowerApp(App):
         Here is where the UI functionality is called.
         :return:
         """
+        # print("Elevating...")
+        # elevate()
+        # print("Elevated.")
         return MainPage()
 
     class PowerButton(CustomButtonBehavior, Image):
