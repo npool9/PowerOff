@@ -9,11 +9,26 @@
                 pos: root.pos
                 size: root.size
         orientation: 'vertical'
+        Label:
+            text: "Device Password:"
+            color: 0, 0, 0, 1
+            bold: True
+            pos: 0, 1100
+            size_hint: 1, 0.05
+        TextInput:  #
+            id: pw
+            password: True
+            size_hint: 0.25, 0.05
+            pos_hint: {'center_x': 0.5, 'center_y': 0.88}
+            background_color: 0, 0, 0, 1
+            foreground_color: 1, 1, 1, 1
+            text: '0'
+            multiline: False
         PowerButton:
             id: power_button
             source: 'images/power_button_green.png'
             size_hint: 0.25, 0.25  # proportion
-            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.69}
             allow_stretch: False
             on_state:
                 if self.state == 'normal1': self.source = 'images/power_button_green.png'

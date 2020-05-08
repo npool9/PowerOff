@@ -101,7 +101,8 @@ class MainPage(RelativeLayout):
             self.stop_timer()
             print("SHUT DOWN BOI")
             time.sleep(1)
-            self.shut_down()
+            password = app.root.ids.pw.text
+            self.shut_down(password)
 
     def stop_timer(self):
         """
@@ -119,9 +120,10 @@ class MainPage(RelativeLayout):
         app.root.ids.stopwatch.text = '0'
         return 0
 
-    def shut_down(self):
+    def shut_down(self, user_password):
         """
         Shut down the device depending on the device on which the program is being run
+        :param user_password: (string) password for shutting down device
         """
         # sys_bus = dbus.SystemBus()
         # ck_srv = sys_bus.get_object('org.freedesktop.ConsoleKit',
@@ -131,4 +133,11 @@ class MainPage(RelativeLayout):
         # stop_method()
         # ["pmset", "sleepnow"]  # sleep alternative
         # command_dict = {'macosx': ["shutdown", "-h"], 'windows': [], 'android': []}
-        subprocess.run(["pmset", "sleepnow"])
+        # subprocess.run(["pmset", "sleepnow"])
+        # iPhone root pw: alpine
+        if platform == 'macosx':
+            pw = subprocess.Popen(["echo", user_password], stdout=subprocess.PIPE)
+            shutdown = subprocess.Popen(['sudo', '-S', 'shutdown', '-h', 'now'], stdin=pw.stdout,
+                                        stdout=subprocess.PIPE)
+            pw.stdout.close()
+            shutdown.communicate()[0]
