@@ -15,3 +15,5 @@ Assuming you have a virtual environment for this project:
 7. `make install`
 8. `cp -r /usr/local/lib/python3.7/site-packages/dbus ~/<path-to-project>/venv/lib/python3.7/site-packages`
 9. `cp -r /usr/local/lib/python3.7/site-packages/_dbus_*.so ~/<path-to-project>/ven/lib/python3.7/site-packages`
+10. `pip install buildozer`
+11. `pip install https://github.com/kivy/buildozer/archive/master.zip`

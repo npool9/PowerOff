@@ -3,8 +3,6 @@ from kivy.uix.image import Image
 from custom_button_behavior import CustomButtonBehavior
 from main_page import MainPage
 from kivy.uix.label import Label
-from elevate import elevate
-import os
 
 
 class PowerApp(App):
@@ -43,8 +41,3 @@ class PowerApp(App):
 
     class BackgroundLabel(Label):
         pass
-
-
-if __name__ == "__main__":
-    app = PowerApp()
-    app.run()

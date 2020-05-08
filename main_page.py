@@ -4,17 +4,13 @@ from kivy.clock import Clock
 from kivy.utils import platform
 import time
 import subprocess
-import math
-import dbus
-import sys
-from kivy.logger import Logger
-import os
-try:
-    from jnius import autoclass
-except KeyError:
-    os.environ['JDK_HOME'] = "/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home"
-    os.environ['JAVA_HOME'] = "/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home"
-    from jnius import autoclass
+# import os
+# try:
+#     from jnius import autoclass
+# except KeyError:
+#     os.environ['JDK_HOME'] = "/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home"
+#     os.environ['JAVA_HOME'] = "/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home"
+#     from jnius import autoclass
 
 
 class MainPage(RelativeLayout):
@@ -140,4 +136,4 @@ class MainPage(RelativeLayout):
             shutdown = subprocess.Popen(['sudo', '-S', 'shutdown', '-h', 'now'], stdin=pw.stdout,
                                         stdout=subprocess.PIPE)
             pw.stdout.close()
-            shutdown.communicate()[0]
+            output = shutdown.communicate()[0]
