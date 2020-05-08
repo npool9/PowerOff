@@ -4,6 +4,7 @@ from custom_button_behavior import CustomButtonBehavior
 from main_page import MainPage
 from kivy.uix.label import Label
 from elevate import elevate
+import os
 
 
 class PowerApp(App):
@@ -26,7 +27,7 @@ class PowerApp(App):
         """
         Override the App class's initial build function.
         Here is where the UI functionality is called.
-        :return:
+        :return: MainPage()
         """
         # print("Elevating...")
         # elevate()

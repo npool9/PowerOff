@@ -132,4 +132,3 @@ class MainPage(RelativeLayout):
         # ["pmset", "sleepnow"]  # sleep alternative
         # command_dict = {'macosx': ["shutdown", "-h"], 'windows': [], 'android': []}
         subprocess.run(["pmset", "sleepnow"])
-
